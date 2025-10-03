@@ -93,4 +93,48 @@ var (
 		},
 		[]string{"queue"},
 	)
+
+	// Cluster metrics
+	ClusterNodes = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "rivetq_cluster_nodes",
+			Help: "Number of nodes in the cluster",
+		},
+	)
+
+	ClusterLeader = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "rivetq_cluster_is_leader",
+			Help: "Whether this node is the Raft leader (1) or not (0)",
+		},
+	)
+
+	RaftCommittedIndex = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "rivetq_raft_committed_index",
+			Help: "Raft committed log index",
+		},
+	)
+
+	RaftAppliedIndex = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "rivetq_raft_applied_index",
+			Help: "Raft applied log index",
+		},
+	)
+
+	ProxyForwardedTotal = promauto.NewCounterVec(
+		prometheus.CounterOpts{
+			Name: "rivetq_proxy_forwarded_total",
+			Help: "Total number of requests forwarded to other nodes",
+		},
+		[]string{"target_node"},
+	)
+
+	ProxyForwardErrorsTotal = promauto.NewCounter(
+		prometheus.CounterOpts{
+			Name: "rivetq_proxy_forward_errors_total",
+			Help: "Total number of failed request forwards",
+		},
+	)
 )
