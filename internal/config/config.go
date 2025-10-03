@@ -14,6 +14,7 @@ type Config struct {
 	Storage  StorageConfig  `yaml:"storage"`
 	WAL      WALConfig      `yaml:"wal"`
 	Queue    QueueConfig    `yaml:"queue"`
+	Cluster  ClusterConfig  `yaml:"cluster"`
 	Logging  LoggingConfig  `yaml:"logging"`
 }
 
@@ -40,6 +41,16 @@ type QueueConfig struct {
 	LeaseCheckInterval time.Duration `yaml:"lease_check_interval"`
 }
 
+// ClusterConfig holds cluster settings
+type ClusterConfig struct {
+	Enabled     bool     `yaml:"enabled"`
+	NodeID      string   `yaml:"node_id"`
+	RaftAddr    string   `yaml:"raft_addr"`
+	Bootstrap   bool     `yaml:"bootstrap"`
+	SeedNodes   []string `yaml:"seed_nodes"`
+	Replication int      `yaml:"replication"`
+}
+
 // LoggingConfig holds logging settings
 type LoggingConfig struct {
 	Level  string `yaml:"level"`
@@ -63,6 +74,14 @@ func Default() *Config {
 		Queue: QueueConfig{
 			Shards:             4,
 			LeaseCheckInterval: 1 * time.Second,
+		},
+		Cluster: ClusterConfig{
+			Enabled:     false,
+			NodeID:      "",
+			RaftAddr:    ":7000",
+			Bootstrap:   false,
+			SeedNodes:   []string{},
+			Replication: 3,
 		},
 		Logging: LoggingConfig{
 			Level:  "info",
