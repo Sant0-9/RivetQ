@@ -8,6 +8,8 @@
 
 ## Features
 
+### Core Queue
+
 - **Durable Storage**: Write-ahead log (WAL) with segmented log files and Pebble KV for indexes
 - **Delayed Jobs**: Schedule jobs to execute at a specific time
 - **Priority Queues**: Jobs ordered by priority (0-9), ETA, and enqueue time
@@ -16,9 +18,21 @@
 - **Dead Letter Queue**: Failed jobs moved to DLQ after max retries
 - **Rate Limiting**: Token bucket rate limiting per queue
 - **Idempotency**: Optional idempotency keys to prevent duplicate processing
+
+### Clustering (Phase 2)
+
+- **Raft Consensus**: Leader election and log replication via HashiCorp Raft
+- **Consistent Hashing**: Automatic queue distribution across nodes with minimal rebalancing
+- **High Availability**: Multi-node setup with automatic failover
+- **Replication**: Configurable replication factor for fault tolerance
+- **Node Discovery**: Automatic discovery and health checking
+- **Request Forwarding**: Transparent routing to the correct node
+
+### APIs & Clients
+
 - **REST + gRPC APIs**: Full-featured APIs with OpenAPI docs and gRPC reflection
 - **Observability**: Prometheus metrics, structured logging (zerolog), pprof profiling
-- **Admin UI**: Modern Next.js dashboard with real-time stats
+- **Admin UI**: Modern Next.js dashboard with real-time stats and cluster view
 - **Client SDKs**: Go and Python clients included
 
 ## Architecture
@@ -320,12 +334,14 @@ rivetq_rate_limit_rejections_total{queue="emails"}
 - [x] REST and gRPC APIs
 - [x] Admin UI
 - [x] Prometheus metrics
-- [ ] **Phase 2**: Clustering with Raft consensus
-- [ ] **Phase 2**: Multi-node sharding
-- [ ] **Phase 2**: S3-compatible WAL snapshots
-- [ ] **Phase 2**: Pluggable storage backends
-- [ ] **Phase 2**: WebSocket API for real-time updates
-- [ ] **Phase 2**: Advanced monitoring dashboards
+- [x] **Phase 2**: Clustering with Raft consensus
+- [x] **Phase 2**: Multi-node sharding with consistent hashing
+- [x] **Phase 2**: Node discovery and health checking
+- [x] **Phase 2**: Automatic request forwarding
+- [ ] **Phase 3**: S3-compatible WAL snapshots
+- [ ] **Phase 3**: Pluggable storage backends
+- [ ] **Phase 3**: WebSocket API for real-time updates
+- [ ] **Phase 3**: Advanced monitoring dashboards
 
 ## Contributing
 
