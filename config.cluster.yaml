@@ -1,0 +1,31 @@
+# RivetQ Cluster Configuration Example
+
+server:
+  http_addr: ":8080"
+  grpc_addr: ":9090"
+
+storage:
+  data_dir: "./data"
+
+wal:
+  segment_size: 67108864  # 64MB
+  fsync: true
+
+queue:
+  shards: 4
+  lease_check_interval: 1s
+
+# Cluster configuration
+cluster:
+  enabled: true
+  node_id: "node1"  # Unique identifier for this node
+  raft_addr: ":7000"  # Raft consensus port
+  bootstrap: true  # Set to true only for the first node
+  seed_nodes:  # Other nodes to discover (empty for first node)
+    # - "node2:8080"
+    # - "node3:8080"
+  replication: 3  # Number of replicas per queue
+
+logging:
+  level: info
+  format: console
