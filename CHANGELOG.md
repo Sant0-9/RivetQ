@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - Phase 2: Clustering - 2025-10-03
+
+### Added
+- Raft consensus for distributed coordination
+- Consistent hashing for queue sharding across nodes
+- Cluster membership management with health checking
+- Node discovery via seed nodes
+- Automatic request forwarding to correct node
+- Cluster administration REST API endpoints
+- Cluster status UI page
+- Prometheus metrics for cluster monitoring
+- Comprehensive clustering documentation (CLUSTER.md)
+- Cluster configuration examples
+- Replication support with configurable factor
+- Leader election and automatic failover
+- Multi-node test suite
+
+### Changed
+- Updated configuration with cluster section
+- Enhanced metrics with cluster-specific counters
+- Improved UI with cluster status view
+
+## [0.1.0] - Initial Release - 2025-10-03
+
 ### Added
 - Initial release of RivetQ
 - Core queue operations (enqueue, lease, ack, nack)
