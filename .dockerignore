@@ -1,0 +1,39 @@
+# Ignore build artifacts
+rivetqd
+rivetqctl
+*.exe
+bin/
+dist/
+
+# Ignore data directories
+data/
+*.wal
+*.log
+
+# Ignore tests
+*_test.go
+testdata/
+
+# Ignore IDE files
+.idea/
+.vscode/
+*.swp
+
+# Ignore git
+.git/
+.gitignore
+
+# Ignore documentation
+*.md
+docs/
+
+# Ignore CI
+.github/
+
+# Ignore generated files
+api/gen/
+
+# Keep necessary files
+!go.mod
+!go.sum
+!Makefile

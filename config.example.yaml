@@ -1,0 +1,20 @@
+# RivetQ Configuration Example
+
+server:
+  http_addr: ":8080"
+  grpc_addr: ":9090"
+
+storage:
+  data_dir: "./data"
+
+wal:
+  segment_size: 67108864  # 64MB
+  fsync: true
+
+queue:
+  shards: 4
+  lease_check_interval: 1s
+
+logging:
+  level: info  # debug, info, warn, error
+  format: console  # console or json
